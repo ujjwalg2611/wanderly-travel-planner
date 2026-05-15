@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sand: #c4842a;
+  --sand-light: #f7edd8;
+  --ocean: #2c9eef;
+  --forest: #22c55e;
+  --dusk: #d946ef;
+  --dark: #0f1923;
+  --dark-card: #1a2535;
+  --dark-border: #2a3a50;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body { background: var(--dark); color: #e2e8f0; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c4842a55; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c4842a; }
+
+/* Glass morphism */
+.glass {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.dark .glass {
+  background: rgba(26,37,53,0.8);
+}
+
+.glass-dark {
+  background: rgba(15, 25, 35, 0.7);
+  backdrop-filter: blur(20px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #c4842a, #f7edd8, #c4842a);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+.ocean-gradient-text {
+  background: linear-gradient(135deg, #2c9eef, #89d2fb, #2c9eef);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white dark:bg-[#1a2535] rounded-2xl shadow-card border border-sand-100/50 dark:border-[#2a3a50] transition-all duration-300;
+}
+
+.card:hover {
+  @apply shadow-card-hover;
+}
+
+/* Trip card image overlay */
+.trip-card-overlay {
+  background: linear-gradient(to bottom, transparent 40%, rgba(15,25,35,0.9) 100%);
+}
+
+/* Shimmer loading */
+.shimmer-bg {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .shimmer-bg {
+  background: linear-gradient(90deg, #1a2535 25%, #243045 50%, #1a2535 75%);
+  background-size: 200% 100%;
+}
+
+/* Timeline */
+.timeline-line {
+  position: relative;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #c4842a, #2c9eef, #22c55e);
+}
+
+/* Sidebar active */
+.nav-active {
+  background: linear-gradient(135deg, #c4842a22, #c4842a11);
+  color: #c4842a;
+  border-right: 3px solid #c4842a;
+}
+
+/* Badge */
+.badge {
+  @apply px-2.5 py-0.5 rounded-full text-xs font-semibold;
+}
+
+/* Input focus ring */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(196, 132, 42, 0.2);
+}
+
+/* Floating label */
+.float-label { position: relative; }
+.float-label input:focus + label,
+.float-label input:not(:placeholder-shown) + label {
+  transform: translateY(-1.5rem) scale(0.85);
+  color: #c4842a;
+}
+.float-label label {
+  transition: all 0.2s ease;
+}
+
+/* Hero pattern overlay */
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(15,25,35,0.7) 0%, rgba(15,25,35,0.4) 50%, rgba(196,132,42,0.2) 100%);
+}
+
+/* Map placeholder */
+.map-placeholder {
+  background: linear-gradient(135deg, #eef8ff 0%, #d8effe 50%, #b9e3fd 100%);
+}
+
+.dark .map-placeholder {
+  background: linear-gradient(135deg, #1a2535 0%, #243045 50%, #1a3a5c 100%);
+}
+
+/* Budget progress */
+.budget-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  overflow: hidden;
+}
+
+.budget-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #22c55e, #c4842a, #ef4444);
+  transition: width 0.8s ease;
+}
+
+/* Activity chip */
+.time-chip {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
+}
+
+/* Drag handle */
+.drag-handle { cursor: grab; }
+.drag-handle:active { cursor: grabbing; }
+
+/* Notification badge */
+.notif-dot {
+  width: 8px; height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: absolute;
+  top: -2px; right: -2px;
+}
