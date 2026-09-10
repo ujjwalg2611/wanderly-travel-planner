@@ -1,4 +1,5 @@
 # 🌍 Wanderly – AI-Powered Travel Itinerary Planner
+🔗 **Live Demo:** [wanderly-travel-planner](https://wanderly-frontend-r14cx0byt-ujjwalg2611s-projects.vercel.app)
 
 A full-stack MERN travel planning application with AI itinerary generation, social features, expense tracking, and a beautiful modern UI.
 
