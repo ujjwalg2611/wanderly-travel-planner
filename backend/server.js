@@ -3,6 +3,7 @@ const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 dotenv.config();
 
 const app = express();
@@ -11,6 +12,15 @@ const io = new Server(server, { cors: { origin: '*', methods: ['GET', 'POST'] } 
 
 app.use(cors());
 app.use(express.json());
+
+// Connect to MongoDB if a URI is provided, otherwise fall back to in-memory store
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('MongoDB connection error:', err));
+} else {
+  console.log('No MONGODB_URI set — using in-memory store');
+}
 
 const db = { users: [], trips: [], expenses: [], comments: [], notifications: [], priceAlerts: [] };
 app.set('db', db);
